@@ -12,6 +12,7 @@ function App() {
     <div>
       <Navbar />
       <Home />
+      <SpeedInsights/>
       <About />
       <Skills />
       <Work />
