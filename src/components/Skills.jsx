@@ -12,20 +12,21 @@ import Tailwind from '../assets/tailwind.png';
 import Mongo from '../assets/mongo.png';
 import Python from '../assets/python.png';
 import MySQL from  '../assets/mysql.png';
+import Lua from  '../assets/lua.png';
 
 const skillsData = [
   { src: HTML, name: 'HTML' },
   { src: CSS, name: 'CSS' },
+  { src: Python, name: 'Python' },
   { src: JavaScript, name: 'JavaScript' },
   { src: Typescript, name: 'Typescript' },
+  { src: Lua, name: 'Lua' },
+  { src: Tailwind, name: 'Tailwind' },
   { src: ReactImg, name: 'React' },
   { src: Node, name: 'Node JS' },
-  { src: FireBase, name: 'FireBase' },
   { src: GitHub, name: 'GitHub' },
-  { src: Tailwind, name: 'Tailwind' },
   { src: Mongo, name: 'Mongo DB' },
-  { src: Python, name: 'Python' },
-  { src: MySQL, name: 'MySQL' }
+  { src: MySQL, name: 'MySQL' },
 ];
 
 const Skills = () => {
