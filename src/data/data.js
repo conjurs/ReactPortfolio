@@ -8,6 +8,7 @@ export const data=[
         name:"React TS Kali Terminal Portfolio",
         image:Kali,
         github:"https://github.com/conjurs/kaliportfolio",
+        live:"https://axelparnoja2.vercel.app/"
     },
     {
         id:2,
