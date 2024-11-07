@@ -10,22 +10,6 @@
     }
     li {
         @apply px-4;
-        @apply cursor-pointer
-    }
-    * {
-        cursor: url('./assets/8.png') 4 4, auto !important;
-    }
-    
-    /* For clickable elements */
-    a, button, select, input[type="submit"], [role="button"] {
-        cursor: url('./assets/8.png') 4 4, pointer !important;
-    }
-    
-    /* For text inputs */
-    input[type="text"], 
-    input[type="email"], 
-    textarea {
-        cursor: url('./assets/8.png') 4 4, text !important;
     }
 }
 

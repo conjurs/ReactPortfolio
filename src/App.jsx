@@ -6,11 +6,9 @@ import Skills from './components/Skills';
 import Work from './components/Work';
 import Contact from './components/Contact';
 import SocialBar from './components/SocialBar';
-import Cursor from './components/Cursor';
 
   return (
     <>
-      <Cursor />
       <Snow isActive={showSnow} />
       <Navbar />
       <Home />
