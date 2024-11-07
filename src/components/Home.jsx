@@ -17,7 +17,7 @@ const Home = () => {
           </h1>
           <div className='overflow-hidden'>
             <h2 className='text-3xl sm:text-5xl font-bold text-text/50 mb-6 animate-slideUp'>
-              Full Stack Developer
+              Jr Full Stack Developer
             </h2>
           </div>
           <p className='text-textDark text-lg max-w-[600px] leading-relaxed mb-8 animate-fadeIn'>
