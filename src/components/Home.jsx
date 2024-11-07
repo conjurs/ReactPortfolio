@@ -4,29 +4,43 @@ import { Link } from 'react-scroll';
 
 const Home = () => {
   return (
-    <div name='home' className='w-full h-screen bg-[#0a192f]'>
+    <div name='home' className='w-full h-screen bg-primary'>
       <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full'>
-        <p className='text-pink-600'>Hi, my name is</p>
-        <h1 className='text-4xl sm:text-7xl font-bold text-[#ccd6f6]'>
-          Axel Pärnoja
-        </h1>
-        <h2 className='text-4xl sm:text-7xl font-bold text-[#8892b0]'>
-          I'm a Full Stack Developer.
-        </h2>
-        <p className='text-[#8892b0] py-4 max-w-[700px]'>
-          I’m a full-stack developer specializing in building (and occasionally
-          designing) digital experiences. Currently, I’m focused on
-          building responsive full-stack web applications.
-        </p>
-        <div>
-          <Link to='work' smooth={true} duration={500}>
-            <button className='text-white group border-2 px-6 py-3 my-2 flex items-center hover:bg-pink-600 hover:border-pink-600'>
-              View Work
-              <span className='group-hover:rotate-90 duration-300'>
-                <HiArrowNarrowRight className='ml-3 ' />
-              </span>
-            </button>
-          </Link>
+        <div className='backdrop-blur-sm bg-surface/30 p-12 rounded-2xl border border-accent/10
+                     hover:border-accent/30 transition-all duration-500 shadow-lg shadow-accent/5
+                     opacity-0 animate-slideUp'>
+          <div className='text-accent/80 font-mono text-sm tracking-wider mb-4 animate-fadeIn'>
+            Hi, I'm
+          </div>
+          <h1 className='text-6xl sm:text-8xl font-bold text-text mb-4 tracking-tight animate-slideUp'>
+            Axel Pärnoja
+          </h1>
+          <div className='overflow-hidden'>
+            <h2 className='text-3xl sm:text-5xl font-bold text-text/50 mb-6 animate-slideUp'>
+              Full Stack Developer
+            </h2>
+          </div>
+          <p className='text-textDark text-lg max-w-[600px] leading-relaxed mb-8 animate-fadeIn'>
+            Crafting digital experiences through elegant code. 
+            Specializing in full-stack development with a focus on 
+            creating intuitive and performant web applications.
+          </p>
+          <div className='flex gap-4'>
+            <Link to='work' smooth={true} duration={500}>
+              <button className='group px-8 py-4 bg-accent/10 border border-accent/50 rounded-lg 
+                               text-accent hover:bg-accent hover:text-white transition-all duration-300 
+                               flex items-center gap-3 hover:gap-5'>
+                View My Work
+                <HiArrowNarrowRight className='transition-all duration-300 group-hover:rotate-90' />
+              </button>
+            </Link>
+            <Link to='contact' smooth={true} duration={500}>
+              <button className='px-8 py-4 bg-accent text-white rounded-lg 
+                               hover:bg-accent/80 transition-all duration-300'>
+                Get in Touch
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

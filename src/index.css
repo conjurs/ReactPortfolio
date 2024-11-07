@@ -12,6 +12,21 @@
         @apply px-4;
         @apply cursor-pointer
     }
+    * {
+        cursor: url('./assets/8.png') 4 4, auto !important;
+    }
+    
+    /* For clickable elements */
+    a, button, select, input[type="submit"], [role="button"] {
+        cursor: url('./assets/8.png') 4 4, pointer !important;
+    }
+    
+    /* For text inputs */
+    input[type="text"], 
+    input[type="email"], 
+    textarea {
+        cursor: url('./assets/8.png') 4 4, text !important;
+    }
 }
 
 .content-div {
@@ -27,4 +42,14 @@
         rgba(112, 157, 255, 0.8),
         hsla(242, 74%, 61%, 0.8)   
     )!important;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-scroll {
+  display: flex;
+  animation: scroll 20s linear infinite;
 }

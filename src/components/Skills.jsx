@@ -1,64 +1,62 @@
 import React, { useEffect, useState } from 'react';
-
-import HTML from '../assets/html.png';
-import CSS from '../assets/css.png';
-import JavaScript from '../assets/javascript.png';
-import Typescript from '../assets/typescript.png';
-import ReactImg from '../assets/react.png';
-import Node from '../assets/node.png';
-import FireBase from '../assets/firebase.png';
-import GitHub from '../assets/github.png';
-import Tailwind from '../assets/tailwind.png';
-import Mongo from '../assets/mongo.png';
-import Python from '../assets/python.png';
-import MySQL from  '../assets/mysql.png';
-import Lua from  '../assets/lua.png';
+import { Icon } from '@iconify/react';
 
 const skillsData = [
-  { src: HTML, name: 'HTML' },
-  { src: CSS, name: 'CSS' },
-  { src: Python, name: 'Python' },
-  { src: JavaScript, name: 'JavaScript' },
-  { src: Typescript, name: 'Typescript' },
-  { src: Lua, name: 'Lua' },
-  { src: Tailwind, name: 'Tailwind' },
-  { src: ReactImg, name: 'React' },
-  { src: Node, name: 'Node JS' },
-  { src: GitHub, name: 'GitHub' },
-  { src: Mongo, name: 'Mongo DB' },
-  { src: MySQL, name: 'MySQL' },
+  { icon: 'logos:html-5', name: 'HTML' },
+  { icon: 'logos:css-3', name: 'CSS' },
+  { icon: 'logos:python', name: 'Python' },
+  { icon: 'logos:javascript', name: 'JavaScript' },
+  { icon: 'logos:typescript-icon', name: 'Typescript' },
+  { icon: 'logos:lua', name: 'Lua' },
+  { icon: 'logos:tailwindcss-icon', name: 'Tailwind' },
+  { icon: 'logos:react', name: 'React' },
+  { icon: 'logos:laravel', name: 'Laravel' },
+  { icon: 'mdi:github', name: 'GitHub', className: 'text-white' },
+  { icon: 'logos:mysql', name: 'MySQL' },
+  { icon: 'logos:php', name: 'PHP' }
 ];
 
 const Skills = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex(prevIndex => (prevIndex + 1) % skillsData.length);
-    }, 1000);
+      setActiveIndex(Math.floor(Math.random() * skillsData.length));
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div name='skills' className='w-full h-screen bg-[#0a192f] text-gray-300'>
-      {/* Container */}
-      <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-        <div>
-          <p className='text-4xl font-bold inline border-b-4 border-pink-600'>Skills</p>
-          <p className='py-4'>// These are the technologies I've worked with</p>
+    <div name='skills' className='w-full min-h-screen py-20 bg-primary'>
+      <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full'>
+        <div className='text-center mb-16'>
+          <h2 className='text-4xl font-bold text-text inline-block border-b-4 border-accent'>
+            Technologies
+          </h2>
+          <p className='text-textDark mt-4'>My technical toolkit</p>
         </div>
-
-        <div className='w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-8'>
+        
+        <div className='grid grid-cols-2 sm:grid-cols-4 gap-8'>
           {skillsData.map((skill, index) => (
             <div
               key={index}
-              className={`shadow-md shadow-[#040c16] duration-500 transform ${
-                activeIndex === index ? 'scale-110' : ''
-              }`}
+              className={`group p-6 rounded-xl bg-surface/50 backdrop-blur-sm 
+                         border border-accent/10 transition-all duration-300 transform 
+                         ${activeIndex === index ? '-translate-y-2 shadow-lg' : ''}`}
             >
-              <img className='w-20 mx-auto' src={skill.src} alt={`${skill.name} icon`} />
-              <p className='my-4'>{skill.name}</p>
+              <div className='h-16 flex items-center justify-center mb-4'>
+                <Icon 
+                  icon={skill.icon} 
+                  className={`text-5xl transition-transform duration-300 
+                    ${skill.className || 'text-black'} 
+                    ${activeIndex === index ? 'group-hover:text-white group-hover:scale-110' : ''}`} 
+                />
+              </div>
+              <p className={`text-center text-text transition-colors 
+                ${activeIndex === index ? 'group-hover:text-accent' : ''}`}>
+                {skill.name}
+              </p>
             </div>
           ))}
         </div>
