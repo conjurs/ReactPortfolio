@@ -63,54 +63,43 @@ const Skills = () => {
   };
 
   return (
-    <div name='skills' className='w-full min-h-screen bg-retro-black p-8 pt-24 pb-24'>
-      <div className='terminal-window max-w-[1000px] mx-auto p-4'>
-        <div className='terminal-header flex items-center gap-2 mb-4 border-b border-[#8B5CF6]/30 pb-2'>
-          <div className='w-3 h-3 rounded-full bg-[#8B5CF6]'></div>
-          <div className='font-vt323 text-[#8B5CF6]'>skills.exe</div>
-        </div>
-
-        <div className='font-dos text-[#8B5CF6] mb-4'>
-          <p>Skills Terminal v1.0</p>
-          <p>Type 'HELP' for available commands</p>
-        </div>
-
-        <div 
-          ref={terminalRef}
-          className='font-mono text-[#8B5CF6] mb-4 h-[400px] overflow-y-auto'
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'
-          }}
-        >
-          {commandHistory.map((entry, i) => (
-            <div key={i} className='mb-2'>
-              <div className='flex'>
-                <span className='text-[#8B5CF6]/70'>{`>`}</span>
-                <span className='ml-2'>{entry.command}</span>
-              </div>
-              {Array.isArray(entry.response) ? (
-                entry.response.map((line, j) => (
-                  <div key={j} className='ml-4 text-[#8B5CF6]/90'>{line}</div>
-                ))
-              ) : (
-                <div className='ml-4 text-[#8B5CF6]/90'>{entry.response}</div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <form onSubmit={handleCommand} className='flex items-center gap-2'>
-          <span className='text-[#8B5CF6]'>{`>`}</span>
-          <input
-            type="text"
-            value={currentCommand}
-            onChange={(e) => setCurrentCommand(e.target.value)}
-            className='flex-1 bg-transparent border-none outline-none text-[#8B5CF6] font-mono'
-            autoFocus
-          />
-        </form>
+    <div className='font-dos text-retro-green'>
+      <div className='mb-4'>
+        <p>Skills Terminal v1.0</p>
+        <p>Type 'HELP' for available commands</p>
       </div>
+
+      <div 
+        ref={terminalRef}
+        className='mb-4 h-[400px] overflow-y-auto'
+      >
+        {commandHistory.map((entry, i) => (
+          <div key={i} className='mb-2'>
+            <div className='flex'>
+              <span className='text-retro-green/70'>{`>`}</span>
+              <span className='ml-2'>{entry.command}</span>
+            </div>
+            {Array.isArray(entry.response) ? (
+              entry.response.map((line, j) => (
+                <div key={j} className='ml-4 text-retro-green/90'>{line}</div>
+              ))
+            ) : (
+              <div className='ml-4 text-retro-green/90'>{entry.response}</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleCommand} className='flex items-center gap-2'>
+        <span className='text-retro-green'>{`>`}</span>
+        <input
+          type="text"
+          value={currentCommand}
+          onChange={(e) => setCurrentCommand(e.target.value)}
+          className='flex-1 bg-transparent border-none outline-none text-retro-green'
+          autoFocus
+        />
+      </form>
     </div>
   );
 };

@@ -42,14 +42,14 @@ export const projectData = [
     {
         id: '05',
         name: 'Battleship Game against AI',
-        type: 'GAME',
+        type: 'WEB APP GAME',
         tech: [''],
         github: 'https://github.com/conjurs/laevadepommitamineai',
     },
     {
         id: '06',
         name: 'Git Commit Abuser',
-        type: 'WEB APP',
+        type: 'APP',
         tech: [''],
         github: 'https://github.com/conjurs/git-commit-abuser',
     },

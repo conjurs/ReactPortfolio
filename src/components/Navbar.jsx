@@ -14,11 +14,11 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { id: 'home', label: 'HOME' },
-    { id: 'about', label: 'ABOUT' },
-    { id: 'skills', label: 'SKILLS' },
-    { id: 'work', label: 'WORK' },
-    { id: 'contact', label: 'CONTACT' }
+    { id: 'main', label: 'HOME' },
+    { id: 'about-section', label: 'ABOUT' },
+    { id: 'skills-section', label: 'SKILLS' },
+    { id: 'work-section', label: 'WORK' },
+    { id: 'contact-section', label: 'CONTACT' }
   ];
 
   return (
@@ -37,12 +37,12 @@ const Navbar = () => {
               to={item.id}
               spy={true}
               smooth={true}
-              offset={item.id === 'home' ? 0 : -64}
+              offset={item.id === 'main' ? 0 : -64}
               duration={500}
               className='px-4 text-retro-green font-dos hover:text-retro-green/70 
                        transition-colors duration-300 cursor-pointer'
               onClick={() => {
-                if (item.id === 'home') {
+                if (item.id === 'main') {
                   window.location.reload();
                 }
               }}
