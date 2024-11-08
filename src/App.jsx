@@ -27,7 +27,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <div className="bg-retro-black">
-              {/* Main terminal (full viewport) */}
               <div className="h-screen relative">
                 <Navbar />
                 <div className="h-full flex items-center justify-center p-4">
@@ -41,7 +40,6 @@ const App = () => {
                 </div>
               </div>
 
-              {/* Other sections (visible after loading) */}
               {isLoaded && (
                 <div className="container mx-auto px-4 py-20 flex flex-col gap-8">
                   <div id="about-section" className="terminal-window p-4">
