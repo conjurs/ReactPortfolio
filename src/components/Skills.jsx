@@ -43,12 +43,18 @@ const Skills = () => {
         'Available commands:',
         'LIST - Show all skills',
         'CLEAR - Clear terminal',
-        'HELP - Show this help message'
+        'HELP - Show this help message',
+        'START SYSTEM32 - Fun command :)'
       ]);
     } else if (cmd === 'list') {
       addToHistory(cmd, skillsData.map(skill => skill.name));
     } else if (cmd === 'clear') {
       setCommandHistory([]);
+    } else if (cmd === 'start system32') {
+      addToHistory(cmd, ['Initializing System32...']);
+      setTimeout(() => {
+        window.location.href = '/404';
+      }, 1500);
     } else {
       addToHistory(cmd, [`Command not found: ${cmd}`]);
     }
