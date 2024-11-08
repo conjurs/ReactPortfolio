@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { projectData } from '../data/data';
+import { useTheme } from '../context/ThemeContext';
 
 const Work = () => {
+  const { theme } = useTheme();
   const [loadingText, setLoadingText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +22,7 @@ const Work = () => {
   }, []);
 
   return (
-    <div name='work' className='w-full min-h-screen bg-retro-black p-4 md:p-8'>
+    <div id='work' className='w-full min-h-screen bg-retro-black p-4 md:p-8'>
       <div className='terminal-window max-w-[1000px] mx-auto p-4'>
         <div className='terminal-header flex items-center gap-2 mb-4 border-b border-retro-green/30 pb-2'>
           <div className='w-3 h-3 rounded-full bg-retro-green'></div>

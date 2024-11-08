@@ -65,7 +65,6 @@ const NotFound = () => {
     const errorHeight = 130;
     const safetyMargin = 20;
     
-    // Ensure popups stay within 80% of the viewport to mimic old Windows behavior
     const maxX = (viewportSize.width * 0.8) - errorWidth;
     const maxY = (viewportSize.height * 0.8) - errorHeight;
     
@@ -76,7 +75,6 @@ const NotFound = () => {
   };
 
   useEffect(() => {
-    // Only show errors on desktop (>= 1024px)
     if (viewportSize.width < 1024) return;
 
     const spawnInterval = setInterval(() => {
@@ -95,7 +93,6 @@ const NotFound = () => {
   const handleErrorClose = (errorId) => {
     setErrors(prev => {
       const newErrors = [];
-      // Spawn 5 new errors
       for (let i = 0; i < 5 && prev.length + newErrors.length < 10; i++) {
         newErrors.push({
           id: Date.now() + i,
