@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 @layer base {
     body {
-        @apply font-[Raleway];
+        @apply bg-retro-black text-retro-green font-vt323;
+        text-shadow: 0 0 5px rgba(139, 92, 246, 0.7);
     }
     li {
         @apply px-4;
@@ -36,4 +37,183 @@
 .animate-scroll {
   display: flex;
   animation: scroll 20s linear infinite;
+}
+
+.crt::before {
+  content: " ";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(139, 92, 246, 0.1) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(139, 92, 246, 0.2),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 998;
+}
+
+.terminal-window {
+  position: relative;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #8B5CF6;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  margin-bottom: -2px;
+}
+
+.terminal-window::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+.terminal-window::after,
+.section-connector,
+.terminal-connector,
+.terminal-connector-top,
+.terminal-connector-bottom {
+  display: none;
+}
+
+.section-container {
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.terminal-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.section-visible .terminal-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 9999;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPYSURBVGiB7ZpNiFVVHMZ/z7kzY2ROhpNJ2kTZwlHbhFAGFVQGtWgVFbUxahVCmyACa9GiVR8GQdDXpl20KGhTuCgIKqKgqE1QUVqJqTVpk6U5Oc7M3P/TYs5wZ+bOvefe+zXC/OFw7jnv+T/Pc95zzn3PuVBTU1NTU1MzlbBuO5B0H7AJWAVcBRwG3jGzQ932PUFHQUi6HtgGrAXmBcwngB3AJjM7lNV/UYKQtAzYDiwHZkbMR4EtZvZOFv9FCELSfOBtYC3Qn9LNKLAVeMXMRtL4L0QQkpYA7wMrgVkduhoGXgNeNrPhuP4LEYSkQeBDYDVwSRfehoANwItmdjZOh0IEIWkA+AhYA8zJ4PIk8DzwvJmNtutYiCAkzQY+AdYBl2d0fQx4FnjWzEZTdy5AEH3ATuBu4MqcQzgCPAU8YWZjsZ0ljUhaBjwCrAeC1uckx4G/gKPAP8Bp4AzggKuAq4ElwEJgAbAYmNvG52/AI8BHZnY+dkDtBCFpEfA4cD9weQufZ4HdwD5gP/Ar8IeZnWoTwBxgEbAcuA24HbgVmNbC/V7gQTM7EDuodkFIGgQeBx4C+iN2B+wGvgC+N7MzKQIIXvwbgLuAO4HZEfMY8BKwOXKqpQ5C0mzgSeBhwm/7JPAp8LmZ/Z7Wd4TlwL3AfcC1EfNvwINmtrvVBakEIWkO8DTwAME3fxr4DHjPzP5M4zMhAu4BHgQWR8x/Ag+Y2U/NF3QsCEmXAc8ADxB8w2eAd4GtZnYylc/OEXAX8BhwQ8R8EFhvZqfDxthBSJoOvAjcT7DsngfeB940s+G0oWdD0grgCWB+xPwNsM7MToSNsYKQNA14GVhPsNxGgQ+A183sePrA8yFpJfAkcFPE/DOwzswmTdFYQUiaCrwK3EOwvMaAT4FXzexY+tDzI+lW4GngpojpZ2Ctmf0bNrQNQtIU4HXgboLlNQ58DrxiZkeyh14Mkm4nWIrXR0w/AmvM7J+woWUQkqYCbwB3EiyvCeAL4EUzO5wv9OKQdAfBD8X1EdMeYLWZnQwbokFImga8RbDnmE6wvL4CXjCzP3JHXiCSVgFbgGsipj3AKjM7ETY0ByHpEuBtgvvr6QQbqG+A583sUEFxF4akO4DNwMKIaS+w0syOhw3hIPoIlth1BMtrN/CcmR0sLOyCkbQaeJNgz9PMPmCFmR0LG/okXUvwm7CY4K7xO2BTtwUhaQ3BvU3kYQjwA3C7mR0NG/okHQH+Bg6b2V/dCrYMJK0juOFr3k1OshfYambfRmxTJO0H/gMOmNnhbsVaU1NTU1NT0xX+B5NQy1hb+rZwAAAAAElFTkSuQmCC");
+}
+
+.terminal-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-terminal-blink {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+/* Vertical connector line */
+.terminal-connector {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    #8B5CF6 0%,
+    rgba(139, 92, 246, 0.7) 50%,
+    rgba(139, 92, 246, 0.3) 100%
+  );
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* Top connector */
+.terminal-connector-top {
+  top: -100px;
+  height: 100px;
+}
+
+/* Bottom connector */
+.terminal-connector-bottom {
+  bottom: -100px;
+  height: 100px;
+}
+
+/* Hide connector for last section */
+.last-section .terminal-connector-bottom {
+  display: none;
+}
+
+/* Container spacing and alignment */
+.section-container {
+  padding: 8rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Terminal window wrapper */
+.terminal-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+/* Visible state */
+.section-visible .terminal-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add this near your other custom styles */
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;
 }

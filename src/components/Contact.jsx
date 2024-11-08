@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Contact = () => {
   const [status, setStatus] = useState('');
+  const [typing, setTyping] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,45 +44,71 @@ const Contact = () => {
   };
 
   return (
-    <div name='contact' className='w-full min-h-screen bg-primary flex items-center'>
-      <div className='max-w-[600px] mx-auto px-8 py-20'>
-        <div className='text-center mb-16'>
-          <h2 className='text-4xl font-bold text-text inline-block border-b-4 border-accent'>
-            Let's Connect
-          </h2>
-          <p className='text-textDark mt-4'>Have a project in mind? Let's make it happen.</p>
+    <div name='contact' className='w-full min-h-screen bg-retro-black p-8 pt-24 pb-24'>
+      <div className='terminal-window max-w-[600px] mx-auto p-4'>
+        <div className='terminal-header flex items-center gap-2 mb-4 border-b border-retro-green/30 pb-2'>
+          <div className='w-3 h-3 rounded-full bg-retro-green'></div>
+          <div className='font-vt323 text-retro-green'>contact.exe</div>
         </div>
 
-        <form onSubmit={handleSubmit} 
-              className='flex flex-col gap-4 backdrop-blur-sm bg-surface/30 p-8 rounded-2xl 
-                         border border-accent/10 hover:border-accent/30 transition-all duration-500 
-                         shadow-lg shadow-accent/5'>
-          <div className='grid grid-cols-2 gap-4'>
-            <input type="text" name="name" required placeholder="Your Name" 
-                   className='p-4 bg-surface/50 backdrop-blur-sm rounded-lg border border-accent/10 
-                            text-text placeholder-textDark focus:border-accent/50 outline-none 
-                            transition-all w-full' />
-            <input type="email" name="email" required placeholder="Your Email" 
-                   className='p-4 bg-surface/50 backdrop-blur-sm rounded-lg border border-accent/10 
-                            text-text placeholder-textDark focus:border-accent/50 outline-none 
-                            transition-all w-full' />
+        <div className='font-dos text-retro-green mb-8'>
+          <p className='mb-4'>{`>`} INITIALIZING CONTACT PROTOCOL...</p>
+          <p className='mb-4'>{`>`} READY TO RECEIVE MESSAGE...</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className='space-y-4' autoComplete="off">
+          <div className='flex flex-col gap-2'>
+            <label className='font-vt323 text-retro-green'>NAME:</label>
+            <input
+              type="text"
+              name="name"
+              required
+              autoComplete="off"
+              className='bg-retro-black border border-retro-green/50 p-2 font-dos text-retro-green 
+                       focus:outline-none focus:border-retro-green'
+              onChange={(e) => setTyping(e.target.value)}
+            />
           </div>
-          <textarea name="message" rows="6" required placeholder="Your Message"
-                    className='p-4 bg-surface/50 backdrop-blur-sm rounded-lg border border-accent/10 
-                             text-text placeholder-textDark focus:border-accent/50 outline-none 
-                             transition-all w-full resize-none' />
-          <button type="submit" 
-                  className='w-full py-4 bg-accent text-white rounded-lg hover:bg-accent/80 
-                            transition-all duration-300 flex items-center justify-center gap-2
-                            disabled:opacity-50 disabled:cursor-not-allowed'
-                  disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending...' : 'Send Message'}
+
+          <div className='flex flex-col gap-2'>
+            <label className='font-vt323 text-retro-green'>EMAIL:</label>
+            <input
+              type="email"
+              name="email"
+              required
+              autoComplete="off"
+              className='bg-retro-black border border-retro-green/50 p-2 font-dos text-retro-green 
+                       focus:outline-none focus:border-retro-green'
+            />
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <label className='font-vt323 text-retro-green'>MESSAGE:</label>
+            <textarea
+              name="message"
+              rows="6"
+              required
+              autoComplete="off"
+              className='bg-retro-black border border-retro-green/50 p-2 font-dos text-retro-green 
+                       focus:outline-none focus:border-retro-green resize-none'
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={status === 'sending'}
+            className='w-full border border-retro-green bg-retro-green/10 p-3 font-vt323 
+                     text-retro-green hover:bg-retro-green/20 transition-all duration-300
+                     disabled:opacity-50 disabled:cursor-not-allowed'
+          >
+            {status === 'sending' ? '> SENDING...' : '> SEND MESSAGE'}
           </button>
-          {status === 'success' && (
-            <p className='text-green-500 text-center'>Message sent successfully!</p>
-          )}
-          {status === 'error' && (
-            <p className='text-red-500 text-center'>Something went wrong. Please try again.</p>
+
+          {status && (
+            <div className='font-dos text-retro-green mt-4 animate-fadeIn'>
+              {status === 'success' && '> MESSAGE SENT SUCCESSFULLY'}
+              {status === 'error' && '> ERROR: TRANSMISSION FAILED. RETRY?'}
+            </div>
           )}
         </form>
       </div>

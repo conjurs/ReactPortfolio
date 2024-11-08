@@ -2,27 +2,31 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div name='about' className='w-full min-h-screen bg-primary'>
-      <div className='flex flex-col justify-center items-center w-full h-full py-20'>
-        <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8'>
-          <div className='sm:text-right pb-8 pl-4'>
-            <p className='text-4xl font-bold inline border-b-4 border-accent text-text'>
-              About
-            </p>
-          </div>
-          <div></div>
+    <div name='about' className='w-full min-h-screen bg-retro-black p-8'>
+      <div className='terminal-window max-w-[1000px] mx-auto p-4'>
+        <div className='terminal-header flex items-center gap-2 mb-4 border-b border-retro-green/30 pb-2'>
+          <div className='w-3 h-3 rounded-full bg-retro-green'></div>
+          <div className='font-vt323 text-retro-green'>about.txt</div>
         </div>
-        <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
-          <div className='sm:text-right text-4xl font-bold'>
-            <p className='text-text/80'>Hi. I'm Axel Pärnoja, nice to meet you. Please take a look around.</p>
+
+        <div className='font-dos text-retro-green'>
+          <p className='mb-4'>{`>`} TYPE C:\ABOUT\README.TXT</p>
+          
+          <div className='border border-retro-green/50 p-4 mb-4'>
+            <p className='text-2xl mb-4'>SYSTEM INFORMATION</p>
+            <p>Name: Axel Pärnoja</p>
+            <p>Age: 18</p>
+            <p>Jr Full Stack Developer</p>
           </div>
-          <div className='bg-surface/50 backdrop-blur-sm p-6 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300'>
-            <p className='text-textDark leading-relaxed'>
-              At just 18 years old, I'm diving headfirst into the world of software development as a full-stack junior developer. 
-              Coding isn't just a hobby for me—it's a passion. I love the challenge of solving problems and the satisfaction 
-              of seeing my code come to life. Whether I'm working on front-end interfaces or back-end systems, I'm always eager 
-              to learn and grow as a developer.
-            </p>  
+
+          <p className='mb-4'>{`>`} MORE C:\ABOUT\DESCRIPTION.TXT</p>
+          
+          <div className='border border-retro-green/50 p-4'>
+            <p className='leading-relaxed'>
+              At just 18 years old, I'm diving headfirst into the world of software development 
+              as a full-stack junior developer. 
+              I love the challenge of solving problems and the satisfaction of seeing my code come to life.
+            </p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
 
 const skillsData = [
@@ -6,60 +6,104 @@ const skillsData = [
   { icon: 'logos:css-3', name: 'CSS' },
   { icon: 'logos:python', name: 'Python' },
   { icon: 'logos:javascript', name: 'JavaScript' },
-  { icon: 'logos:typescript-icon', name: 'Typescript' },
+  { icon: 'logos:typescript-icon', name: 'TypeScript' },
   { icon: 'logos:lua', name: 'Lua' },
   { icon: 'logos:tailwindcss-icon', name: 'Tailwind' },
   { icon: 'logos:react', name: 'React' },
   { icon: 'logos:laravel', name: 'Laravel' },
-  { icon: 'mdi:github', name: 'GitHub', className: 'text-white' },
+  { icon: 'mdi:github', name: 'GitHub' },
   { icon: 'logos:mysql', name: 'MySQL' },
   { icon: 'logos:php', name: 'PHP' }
-];
+].map(skill => ({
+  ...skill,
+  className: 'text-[#8B5CF6] w-12 h-12'
+}));
 
 const Skills = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [currentCommand, setCurrentCommand] = useState('');
+  const terminalRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex(Math.floor(Math.random() * skillsData.length));
-    }, 2000);
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [commandHistory]);
 
-    return () => clearInterval(interval);
-  }, []);
+  const addToHistory = (command, response) => {
+    setCommandHistory(prev => [...prev, { command, response }]);
+  };
+
+  const handleCommand = (e) => {
+    e.preventDefault();
+    const cmd = currentCommand.toLowerCase().trim();
+    
+    if (cmd === 'help') {
+      addToHistory(cmd, [
+        'Available commands:',
+        'LIST - Show all skills',
+        'CLEAR - Clear terminal',
+        'HELP - Show this help message'
+      ]);
+    } else if (cmd === 'list') {
+      addToHistory(cmd, skillsData.map(skill => skill.name));
+    } else if (cmd === 'clear') {
+      setCommandHistory([]);
+    } else {
+      addToHistory(cmd, [`Command not found: ${cmd}`]);
+    }
+    
+    setCurrentCommand('');
+  };
 
   return (
-    <div name='skills' className='w-full min-h-screen py-20 bg-primary'>
-      <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full'>
-        <div className='text-center mb-16'>
-          <h2 className='text-4xl font-bold text-text inline-block border-b-4 border-accent'>
-            Technologies
-          </h2>
-          <p className='text-textDark mt-4'>My technical toolkit</p>
+    <div name='skills' className='w-full min-h-screen bg-retro-black p-8 pt-24 pb-24'>
+      <div className='terminal-window max-w-[1000px] mx-auto p-4'>
+        <div className='terminal-header flex items-center gap-2 mb-4 border-b border-[#8B5CF6]/30 pb-2'>
+          <div className='w-3 h-3 rounded-full bg-[#8B5CF6]'></div>
+          <div className='font-vt323 text-[#8B5CF6]'>skills.exe</div>
         </div>
-        
-        <div className='grid grid-cols-2 sm:grid-cols-4 gap-8'>
-          {skillsData.map((skill, index) => (
-            <div
-              key={index}
-              className={`group p-6 rounded-xl bg-surface/50 backdrop-blur-sm 
-                         border border-accent/10 transition-all duration-300 transform 
-                         ${activeIndex === index ? '-translate-y-2 shadow-lg' : ''}`}
-            >
-              <div className='h-16 flex items-center justify-center mb-4'>
-                <Icon 
-                  icon={skill.icon} 
-                  className={`text-5xl transition-transform duration-300 
-                    ${skill.className || 'text-black'} 
-                    ${activeIndex === index ? 'group-hover:text-white group-hover:scale-110' : ''}`} 
-                />
+
+        <div className='font-dos text-[#8B5CF6] mb-4'>
+          <p>Skills Terminal v1.0</p>
+          <p>Type 'HELP' for available commands</p>
+        </div>
+
+        <div 
+          ref={terminalRef}
+          className='font-mono text-[#8B5CF6] mb-4 h-[400px] overflow-y-auto'
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none'
+          }}
+        >
+          {commandHistory.map((entry, i) => (
+            <div key={i} className='mb-2'>
+              <div className='flex'>
+                <span className='text-[#8B5CF6]/70'>{`>`}</span>
+                <span className='ml-2'>{entry.command}</span>
               </div>
-              <p className={`text-center text-text transition-colors 
-                ${activeIndex === index ? 'group-hover:text-accent' : ''}`}>
-                {skill.name}
-              </p>
+              {Array.isArray(entry.response) ? (
+                entry.response.map((line, j) => (
+                  <div key={j} className='ml-4 text-[#8B5CF6]/90'>{line}</div>
+                ))
+              ) : (
+                <div className='ml-4 text-[#8B5CF6]/90'>{entry.response}</div>
+              )}
             </div>
           ))}
         </div>
+
+        <form onSubmit={handleCommand} className='flex items-center gap-2'>
+          <span className='text-[#8B5CF6]'>{`>`}</span>
+          <input
+            type="text"
+            value={currentCommand}
+            onChange={(e) => setCurrentCommand(e.target.value)}
+            className='flex-1 bg-transparent border-none outline-none text-[#8B5CF6] font-mono'
+            autoFocus
+          />
+        </form>
       </div>
     </div>
   );
