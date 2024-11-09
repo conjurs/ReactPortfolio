@@ -14,7 +14,7 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { id: 'main', label: 'HOME' },
+    { id: 'main', label: 'RESTART SYSTEM' },
     { id: 'about-section', label: 'ABOUT' },
     { id: 'skills-section', label: 'SKILLS' },
     { id: 'work-section', label: 'WORK' },
