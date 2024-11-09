@@ -1,10 +1,3 @@
-import Kali from '../assets/projects/kali.png'
-import Weather from '../assets/projects/weather.png'
-import BiolinkImg1 from '../assets/projects/biolink1.png'
-import BiolinkImg2 from '../assets/projects/biolink2.png'
-import BiolinkImg3 from '../assets/projects/biolink3.png'
-import BiolinkImg4 from '../assets/projects/biolink4.png'
-
 export const projectData = [
     {
         id: '01',
@@ -17,13 +10,30 @@ export const projectData = [
     },
     {
         id: '02',
+        name: 'Retro-Terminal Portfolio',
+        type: 'WEB APP',
+        tech: [''],
+        description: 'this portfolio',
+        github: 'https://github.com/conjurs/ReactPortfolio',
+        live: 'https://retrocon.vercel.app/'
+    },
+    {
+        id: '03',
+        name: 'Professional Portfolio',
+        type: 'WEB APP',
+        tech: [''],
+        description: 'simple portfolio but source code is not available',
+        live: 'https://axelparnoja.vercel.app/'
+    },
+    {
+        id: '04',
         name: 'React JS Weather Information',
         type: 'WEB APP',
         tech: [''],
         github: 'https://github.com/conjurs/weather-checker',
     },
     {
-        id: '03',
+        id: '05',
         name: 'Twitter Clone',
         type: 'WEB APP',
         tech: [''],
@@ -31,36 +41,27 @@ export const projectData = [
         github: 'https://github.com/conjurs/Tewttr',
     },
     {
-        id: '04',
-        name: 'React JS Portfolio',
-        type: 'WEB APP',
-        tech: [''],
-        description: 'this portfolio',
-        github: 'https://github.com/conjurs/ReactPortfolio',
-        live: 'https://axelparnoja.vercel.app/'
-    },
-    {
-        id: '05',
+        id: '06',
         name: 'Battleship Game against AI',
         type: 'WEB APP GAME',
         tech: [''],
         github: 'https://github.com/conjurs/laevadepommitamineai',
     },
     {
-        id: '06',
+        id: '07',
         name: 'Git Commit Abuser',
         type: 'APP',
         tech: [''],
         github: 'https://github.com/conjurs/git-commit-abuser',
     },
     {
-        id: '07',
+        id: '08',
         name: 'Laravel Biolink Service',
         type: 'WEB APP',
         tech: [''],
         description: 'CRUD, 2FA, API, AUTH, CUSTOM DOMAIN, etc.',
         github: 'https://github.com/conjurs/blcklstd',
-    }
+    },
 ]
 
 export default projectData;
